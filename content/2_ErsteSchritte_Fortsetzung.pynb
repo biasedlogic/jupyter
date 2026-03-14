@@ -1,0 +1,131 @@
+{
+  "metadata": {
+    "kernelspec": {
+      "name": "python",
+      "display_name": "Python (Pyodide)",
+      "language": "python"
+    },
+    "language_info": {
+      "codemirror_mode": {
+        "name": "python",
+        "version": 3
+      },
+      "file_extension": ".py",
+      "mimetype": "text/x-python",
+      "name": "python",
+      "nbconvert_exporter": "python",
+      "pygments_lexer": "ipython3",
+      "version": "3.8"
+    }
+  },
+  "nbformat_minor": 5,
+  "nbformat": 4,
+  "cells": [
+    {
+      "id": "0f2cd58b-253d-4533-ba47-c2a6d9e86a73",
+      "cell_type": "markdown",
+      "source": "# Literale in Python\nDas Wort \"Literal\" bezeichnet eine Zeichenfolge, die direkt einen Wert bedeutet.\nWenn man im Programm eine `2` schreibt, ist das ein Literal und bedeutet \"eine Zahl mit dem Wert 2\". Für das Programm ist nicht die Form der Ziffer von Relevanz, sondern der eigentliche Zahlenwert.\n\nDie Literale `0b10`und `0x02` haben jeweils auch den gleichen Wert: 2 (der erste ist eine binäre Notation einer Ganzzahl, der zweite - eine hexadezimale). Würde Python römische Zahlen verstehen, wäre ein Literal II ebenfalls eine 2.\n\nDie Literale:\n\n- `\"2\"`\n\n`\"0b10\"`\n\n`\"0x02\"`\n\nsind stattdessen Zeichenfolgen und haben jeweils unterschiedlichen Wert -- der erste ist eine Zeichenfolge aus nur einem Zeichen, der arabischen Ziffer 2, die zweite und dritte Zeichenfolgen bestehen jeweils aus vier Zeichen.",
+      "metadata": {}
+    },
+    {
+      "id": "e04dfc41-4da7-408d-8a7f-40c2ed825de3",
+      "cell_type": "code",
+      "source": "print('Der Wert vom Literal 2 ist:',2,\"und hat den Typ: \", type(2))\nprint('Der Wert vom Literal 0b10 ist:',0b10,\"und hat den Typ:\",type(0b10))\nprint('Der Wert vom Literal \"2\" ist:',\"2\",\"und hat den Typ:\",type('2'))\nprint('Der Wert vom Literal \"0b10\" ist:',\"0b10\",\"und hat den Typ:\",type(\"2\"))\n",
+      "metadata": {
+        "trusted": true
+      },
+      "outputs": [
+        {
+          "name": "stdout",
+          "output_type": "stream",
+          "text": "Der Wert vom Literal 2 ist: 2 und hat den Typ:  <class 'int'>\nDer Wert vom Literal 0b10 ist: 2 und hat den Typ: <class 'int'>\nDer Wert vom Literal \"2\" ist: 2 und hat den Typ: <class 'str'>\nDer Wert vom Literal \"0b10\" ist: 0b10 und hat den Typ: <class 'str'>\n"
+        }
+      ],
+      "execution_count": 25
+    },
+    {
+      "id": "35b8ed21-2e19-45aa-b3fb-890d3f91135c",
+      "cell_type": "markdown",
+      "source": "1. Alter abfragen\n2. Prüfen ob über 18\n    1. Falls ja, \"Volljährig\" schreiben\n    2. Falls nein, \"Minderjährig\" schreiben",
+      "metadata": {}
+    },
+    {
+      "id": "c8b16a94-7938-41e2-a46e-52881f2be347",
+      "cell_type": "code",
+      "source": "age = int(input(\"Wie alt bist Du? \"))\nif age == 18:\n    print(\"gerade volljährig!\")\n    print(\"Glückwunsch!\")\nelse:\n    if age > 18:\n        print(\"Volljährig\")\n    else:\n        print(\"Kind\")\nprint(\"Ende.\")\n",
+      "metadata": {
+        "trusted": true
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdin",
+          "text": "Wie alt bist Du?  18\n"
+        },
+        {
+          "name": "stdout",
+          "output_type": "stream",
+          "text": "gerade volljährig!\nGlückwunsch!\nEnde.\n"
+        }
+      ],
+      "execution_count": 19
+    },
+    {
+      "id": "02334c3a-f441-4834-b1de-6d299c6a1d3e",
+      "cell_type": "code",
+      "source": "age = int(input(\"Wie alt bist Du? \"))\nif age == 18:\n    print(\"gerade volljährig!\")\n    print(\"Glückwunsch!\")\nelif age > 18:\n    print(\"Volljährig\")\nelse:\n    print(\"Kind\")\nprint(\"Ende.\")",
+      "metadata": {
+        "trusted": true
+      },
+      "outputs": [],
+      "execution_count": null
+    },
+    {
+      "id": "1109604b-2b86-4397-a587-fed060d8b73a",
+      "cell_type": "markdown",
+      "source": "# Aufgabe:\nEin Programm schreiben, der an einem automatischen Karrussell den Fahrgast nach dem Alter fragt und ggf. wegen einem mitfahrenden Erwachsenen nachhakt. Die Regeln an dem Karrussell sind wie folgt:\n\n1. Erwachsene zahlen 5€ und dürfen alleine fahren\n2. Kinder ab 12 Jahren dürfen alleine fahren und müssen 2.50€ zahlen\n3. Kleinere Kinder zahlen 2.50€, brauchen aber einen Erwachsenen --> Fragen, ob einer dabei ist und falls ja, OK geben",
+      "metadata": {}
+    },
+    {
+      "id": "21dba067-453c-4cb7-9f61-ebdc94f427cb",
+      "cell_type": "code",
+      "source": "alter = int(input(\"Wie alt bist Du?:\"))\nif alter>=18:\n    print(\"Alles OK, die Fahrt kostet 5.00€\")\nelif alter>=12:\n    print(\"Alles OK, die Fahrt kostet 2.50€\")\nelse:\n    print(\"Du bist noch ein wenig zu klein, um alleine zu fahren.\")\n    print(\"Ist ein Erwachsener dabei?\")\n    begleitung = input(\"Antworte bitte mit J für 'Ja' und N für 'Nein':\")\n    if begleitung == \"j\" or begleitung == \"J\": # Wir lernen demnächst, wie man das richtig(er) macht\n        print(\"Alles OK, das macht dann 7.50€ für Dich und den Erwachsenen zusammen.\")\n    else:\n        print(\"Sorry, Du brauchst einen Erwachsenen um mitfahren zu können.\")\n            ",
+      "metadata": {
+        "trusted": true
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdin",
+          "text": "Wie alt bist Du?: 6\n"
+        },
+        {
+          "name": "stdout",
+          "output_type": "stream",
+          "text": "Du bist noch ein wenig zu klein, um alleine zu fahren.\nIst ein Erwachsener dabei?\n"
+        },
+        {
+          "output_type": "stream",
+          "name": "stdin",
+          "text": "Antworte bitte mit J für 'Ja' und N für 'Nein': J\n"
+        },
+        {
+          "name": "stdout",
+          "output_type": "stream",
+          "text": "Alles OK, das macht dann 7.50€ für Dich und den Erwachsenen zusammen.\n"
+        }
+      ],
+      "execution_count": 3
+    },
+    {
+      "id": "42f2ed5d-d596-49ed-8c26-5533a76d1be8",
+      "cell_type": "code",
+      "source": "",
+      "metadata": {
+        "trusted": true
+      },
+      "outputs": [],
+      "execution_count": null
+    }
+  ]
+}
