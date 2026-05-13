@@ -1,0 +1,41 @@
+{
+  "metadata": {
+    "kernelspec": {
+      "name": "python",
+      "display_name": "Python (Pyodide)",
+      "language": "python"
+    },
+    "language_info": {
+      "codemirror_mode": {
+        "name": "python",
+        "version": 3
+      },
+      "file_extension": ".py",
+      "mimetype": "text/x-python",
+      "name": "python",
+      "nbconvert_exporter": "python",
+      "pygments_lexer": "ipython3",
+      "version": "3.8"
+    }
+  },
+  "nbformat_minor": 5,
+  "nbformat": 4,
+  "cells": [
+    {
+      "id": "c8bae7fb-d26d-47cf-87c2-2b0e34698900",
+      "cell_type": "markdown",
+      "source": "# Die ersten Bewegungen\n\nDas Programm kann nicht hier ausgeführt werden, der Code muss in PyBricks ausgeführt werden (d.h. man muss ihn auf https://beta.pybricks.com eingeben und auf einem LEGO Hub ausführen).\n\nWer allerdings einen - egal welchen - LEGO Technic oder LEGO City Hub hat, kann den auch auf PyBricks flashen und wenn man dazu auch zwei Technic Motoren hat, kann man den Code dann ausführen, auch wenn man kein LEGO Spike Set hat.",
+      "metadata": {}
+    },
+    {
+      "id": "9415334e-d6bd-42a1-bdde-508fe1ea02d5",
+      "cell_type": "code",
+      "source": "from pybricks.hubs import PrimeHub\nfrom pybricks.pupdevices import Motor, ColorSensor, UltrasonicSensor, ForceSensor\nfrom pybricks.parameters import Button, Color, Direction, Port, Side, Stop\nfrom pybricks.robotics import DriveBase\nfrom pybricks.tools import wait, StopWatch\n\nhub = PrimeHub()\n\nmotorLinks  = Motor(Port.A, Direction.COUNTERCLOCKWISE)\nmotorRechts = Motor(Port.B, Direction.CLOCKWISE)\n\nrobot = DriveBase(motorLinks, motorRechts, 54.5, 112)\n\n# Geradeausfahren 100mm = 10cm\nrobot.straight(100)\n\n# manchmal hilfreich für genaue Drehungen:\nrobot.use_gyro(True)\n\n# Das stoßt die Bewegung an, wartet aber nicht, bis sie zu Ende ist:\nrobot.turn( 360,wait=False)\n# Das stoßt die Bewegung an, aber wartet, bis sie zu Ende ist\nrobot.turn(-360,wait)\n# Wenn man das ausführt, hat man den Eindruck, die Rechstdrehung wurde ignoriert\n# - da wir nicht warten, bis die Bewegung komplett ist, wird der nächste Befehl\n# mit der Linksdrehung sofort ausgeführt und die Linksdrehung sofort unterbrochen\n\n# jetzt nochmal wozu das nützlich sein kann:\nrobot.turn( 360,wait=False)\nwait(100)\nprint(\"Der Roboter dreht sich schon, während diese Ausgabe angezeigt wird.\")\nwhile not robot.done(): # um zu prüfen, ob die letzte Bewegung durch ist, \n    continue            # nutzt man .done(), das gibt True zurück, wenn der/die\n                        # Motor/en seine/ihre letzte Anweisung bis Ende ausgeführt\n                        # haben\nrobot.turn(-360,wait)",
+      "metadata": {
+        "trusted": true
+      },
+      "outputs": [],
+      "execution_count": null
+    }
+  ]
+}

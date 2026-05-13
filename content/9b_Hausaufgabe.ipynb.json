@@ -1,0 +1,176 @@
+{
+  "metadata": {
+    "kernelspec": {
+      "name": "python",
+      "display_name": "Python (Pyodide)",
+      "language": "python"
+    },
+    "language_info": {
+      "codemirror_mode": {
+        "name": "python",
+        "version": 3
+      },
+      "file_extension": ".py",
+      "mimetype": "text/x-python",
+      "name": "python",
+      "nbconvert_exporter": "python",
+      "pygments_lexer": "ipython3",
+      "version": "3.8"
+    }
+  },
+  "nbformat_minor": 5,
+  "nbformat": 4,
+  "cells": [
+    {
+      "id": "2471a725-9a1a-4383-b4c3-4d1448a244b6",
+      "cell_type": "markdown",
+      "source": "# Aufgabe 1 – Muss",
+      "metadata": {}
+    },
+    {
+      "id": "bbea0d48-d0c8-4709-a3f8-a77f61d72cec",
+      "cell_type": "markdown",
+      "source": "Programmiere einen Küchentimer. Der Benutzer gibt die Zeit in Sekunden ein, der Timer soll dann die Sekunden herunterzählen und bei Null \"FERTIG!\" schreiben.\n\n# Beispiel\n\nEingabe: `5`\n\nAusgabe:\n\n```\n5\n4\n3\n2\n1\nFERTIG!\n```\n\nDabei jede Zeile erscheint 1 Sekunde später, als die vorherige. \n\nNutze dabei am Besten die Funktion `monotonic()` aus dem Modul `time` --> siehe dazu auch die Musterlösung der Aufgabe aus der vorletzten Kursstunde. Das Abmessen der Zeit haben wir in der letzten Stunde (12. Mai) ausgiebig besprochen.",
+      "metadata": {}
+    },
+    {
+      "id": "846b2a59-8b64-421d-a6ad-837f59749150",
+      "cell_type": "code",
+      "source": "# Eure Lösung",
+      "metadata": {
+        "trusted": true
+      },
+      "outputs": [],
+      "execution_count": 1
+    },
+    {
+      "id": "2afe0d48-1d9e-46dc-aea6-57ea10bab1cf",
+      "cell_type": "markdown",
+      "source": "# Aufgabe 2 – Soll",
+      "metadata": {}
+    },
+    {
+      "id": "ae68676f-e3ea-49a1-ba12-ace519ccfbfa",
+      "cell_type": "markdown",
+      "source": "Wie in 1, allerdings gibt der Benutzer die Zeit in einem der folgenden Formate ein (beliebig):\n- `hh:mm:ss` - also Anzahl Stunden, Doppelpunkt, Anzahl Minuten, Doppelpunkt, Anzahl Sekunden (die Zahlen sind nicht unbedingt zweistellig, z.B. `1:5:00` ist 1h, 5min, 0s)\n- `mm:ss` - also Minuten:Sekunden\n- oder einfach nur `s`, also wenn kein Doppelpunkt dann ist die Zeit direkt in Sekunden\n\nDer Timer soll dann die Zeit herunterzählen bis Null.\n\n## Beispiel 1\nEingabe: `1:1:1`\n\nAusgabe:\n```\nNoch 1h, 1m, 1s\nNoch 1h, 1m, 0s\nNoch 1h, 0m, 59s\n...\nNoch 1h, 0m, 2s\nNoch 1h, 0m, 1s\nNoch 1h, 0m, 0s\nNoch 0h, 59m, 59s\n...\nNoch 0h, 0m, 2s\nNoch 0h, 0m, 1s\nFERTIG!\n```\n\n## Beispiel 2\nEingabe: `5`\n\nAusgabe:\n```\nNoch 0h, 0m, 5s\nNoch 0h, 0m, 4s\nNoch 0h, 0m, 3s\nNoch 0h, 0m, 2s\nNoch 0h, 0m, 1s\nFERTIG!\n```\n\n## Hinweis:\n\nDie Methode `stringVariable.split(\"Z\")` teilt die Zeichenkette in der Variable `stringVariable` an den Stellen, wo \"Z\" in der Zeichenkette vorkommt, auf, und gibt eine Liste an Zeichenketten zurück. \n\nDas Zeichen \"Z\" wird dabei entfernt.\n\nIn anderen Worten, `\"eins,zwei,drei\".split(\",\")` gibt `['eins', 'zwei', 'drei']` zurück:",
+      "metadata": {}
+    },
+    {
+      "id": "b68c24a3-ce8d-4435-a59a-f7a8f4dc9cd6",
+      "cell_type": "code",
+      "source": "print(\"eins,zwei,drei\".split(\",\"))",
+      "metadata": {
+        "trusted": true
+      },
+      "outputs": [
+        {
+          "name": "stdout",
+          "output_type": "stream",
+          "text": "['eins', 'zwei', 'drei']\n"
+        }
+      ],
+      "execution_count": 2
+    },
+    {
+      "id": "fe660400-a65b-41b8-8350-fee3afde11bf",
+      "cell_type": "code",
+      "source": "# Eure Lösung:",
+      "metadata": {
+        "trusted": true
+      },
+      "outputs": [],
+      "execution_count": 3
+    },
+    {
+      "id": "0d0ca0b8-975c-408f-b6ef-91598a047ffe",
+      "cell_type": "markdown",
+      "source": "# Aufgabe 3 – Kann\n\nDein Programm bekommt als Eingabe einen Text (einfach in das Eingbaefeld von `input()` per Copy-Paste).\n\nFinde heraus, welcher Buchstabe in dem Text am häufigsten vorkommt.\n\n**Lese unbedingt die Hinweise!**\n",
+      "metadata": {
+        "jp-MarkdownHeadingCollapsed": true
+      }
+    },
+    {
+      "id": "30f755ee-4ec0-4b26-bf24-82835f77b7d6",
+      "cell_type": "markdown",
+      "source": "## Hinweis 1\n\nWenn man sich eine Liste mit n Nullen anlegen möchte, zum Beispiel um n verschiedene Sachen zu zählen, kann man das so tun:\n```\n# Beispiel: eine Liste mit 10 Nullen:\nmeineListe = [0] * 10\n```",
+      "metadata": {
+        "jp-MarkdownHeadingCollapsed": true
+      }
+    },
+    {
+      "id": "bbaddb25-1cd9-402b-a059-ba1295b1f47f",
+      "cell_type": "code",
+      "source": "meineListe = [0] * 10\nprint(meineListe)",
+      "metadata": {
+        "trusted": true
+      },
+      "outputs": [
+        {
+          "name": "stdout",
+          "output_type": "stream",
+          "text": "[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\n"
+        }
+      ],
+      "execution_count": 4
+    },
+    {
+      "id": "4af305a0-4ecd-49ca-a7a1-1d5680a3e7eb",
+      "cell_type": "markdown",
+      "source": "## Hinweis 2\n\nDie Methode `.index(s)` findet, an welchen Stelle s in einer Liste, oder in einer Zeichenkette ist. Achtung, die Methode verursacht einen Fehler, wenn `s` nicht gefunden wurde, siehe Hinweis 3.\n",
+      "metadata": {
+        "jp-MarkdownHeadingCollapsed": true
+      }
+    },
+    {
+      "id": "a91c5700-d626-4592-98a3-c8312c47c858",
+      "cell_type": "code",
+      "source": "text = \"abcdef\"\nprint(\"'abcdef'.index('e') gibt\",text.index('e'),\"zurück.\") \n\nprint(\"'abcdef'.index('z') gibt\",text.index('z'),\"zurück.\") \n        # hier kommt ein ValueError! 'z' ist nicht im text\n",
+      "metadata": {
+        "trusted": true
+      },
+      "outputs": [
+        {
+          "name": "stdout",
+          "output_type": "stream",
+          "text": "'abcdef'.index('e') gibt 4 zurück.\n"
+        },
+        {
+          "ename": "<class 'ValueError'>",
+          "evalue": "substring not found",
+          "traceback": [
+            "\u001b[31m---------------------------------------------------------------------------\u001b[39m",
+            "\u001b[31mValueError\u001b[39m                                Traceback (most recent call last)",
+            "\u001b[36mCell\u001b[39m\u001b[36m \u001b[39m\u001b[32mIn[7]\u001b[39m\u001b[32m, line 4\u001b[39m\n\u001b[32m      1\u001b[39m text = \u001b[33m\"\u001b[39m\u001b[33mabcdef\u001b[39m\u001b[33m\"\u001b[39m\n\u001b[32m      2\u001b[39m \u001b[38;5;28mprint\u001b[39m(\u001b[33m\"\u001b[39m\u001b[33m'\u001b[39m\u001b[33mabcdef\u001b[39m\u001b[33m'\u001b[39m\u001b[33m.index(\u001b[39m\u001b[33m'\u001b[39m\u001b[33me\u001b[39m\u001b[33m'\u001b[39m\u001b[33m) gibt\u001b[39m\u001b[33m\"\u001b[39m,text.index(\u001b[33m'\u001b[39m\u001b[33me\u001b[39m\u001b[33m'\u001b[39m),\u001b[33m\"\u001b[39m\u001b[33mzurück.\u001b[39m\u001b[33m\"\u001b[39m) \n\u001b[32m----> \u001b[39m\u001b[32m4\u001b[39m \u001b[38;5;28mprint\u001b[39m(\u001b[33m\"\u001b[39m\u001b[33m'\u001b[39m\u001b[33mabcdef\u001b[39m\u001b[33m'\u001b[39m\u001b[33m.index(\u001b[39m\u001b[33m'\u001b[39m\u001b[33mz\u001b[39m\u001b[33m'\u001b[39m\u001b[33m) gibt\u001b[39m\u001b[33m\"\u001b[39m,\u001b[43mtext\u001b[49m\u001b[43m.\u001b[49m\u001b[43mindex\u001b[49m\u001b[43m(\u001b[49m\u001b[33;43m'\u001b[39;49m\u001b[33;43mz\u001b[39;49m\u001b[33;43m'\u001b[39;49m\u001b[43m)\u001b[49m,\u001b[33m\"\u001b[39m\u001b[33mzurück.\u001b[39m\u001b[33m\"\u001b[39m) \n\u001b[32m      5\u001b[39m         \u001b[38;5;66;03m# hier kommt ein ValueError! 'z' ist nicht im text\u001b[39;00m\n",
+            "\u001b[31mValueError\u001b[39m: substring not found"
+          ],
+          "output_type": "error"
+        }
+      ],
+      "execution_count": 7
+    },
+    {
+      "id": "3c046fe2-1c37-4406-90f0-9484cebeccce",
+      "cell_type": "markdown",
+      "source": "## Hinweis 3\n\nDer Befehl `in` prüft, ob etwas in einer Liste, oder in einer Zeichenkette vorkommt.  ",
+      "metadata": {
+        "jp-MarkdownHeadingCollapsed": true
+      }
+    },
+    {
+      "id": "7ab73d5b-1750-4919-bf87-01eb481d9664",
+      "cell_type": "code",
+      "source": "text = \"abcdef\"\nif 'e' in text:\n    print(\"'abcdef'.index('e') gibt\",text.index('e'),\"zurück.\") \nelse:\n    print(\"'e' kommt in 'text' nicht vor\")\nif 'z' in text:\n    print(\"'abcdef'.index('z') gibt\",text.index('z'),\"zurück.\") \nelse:\n    print(\"'z' kommt in 'text' nicht vor\")",
+      "metadata": {
+        "trusted": true
+      },
+      "outputs": [
+        {
+          "name": "stdout",
+          "output_type": "stream",
+          "text": "'abcdef'.index('e') gibt 4 zurück.\n'z' kommt in 'text' nicht vor\n"
+        }
+      ],
+      "execution_count": 6
+    }
+  ]
+}
